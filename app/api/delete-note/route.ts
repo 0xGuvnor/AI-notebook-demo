@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { noteId } = await req.json();
+  const { noteId } = (await req.json()) as { noteId: string };
 
   await db.delete($notes).where(eq($notes.id, parseInt(noteId)));
 

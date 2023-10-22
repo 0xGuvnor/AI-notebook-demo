@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  const { name } = await req.json();
+  const { name } = (await req.json()) as { name: string };
 
   const imageDescription = await generateImagePrompt(name);
 
