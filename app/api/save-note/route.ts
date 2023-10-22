@@ -5,7 +5,10 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    let { noteId, editorState } = await req.json();
+    let { noteId, editorState } = (await req.json()) as {
+      noteId: string;
+      editorState: string;
+    };
 
     if (!noteId || !editorState) {
       return new NextResponse("Incomplete information", { status: 400 });
